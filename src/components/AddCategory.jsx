@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function AddCategory() {
+export default function AddCategory({ onAddCategories }) {
 
     const [inputValue, setInputValue] = useState('');
 
@@ -10,7 +10,9 @@ export default function AddCategory() {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(inputValue);
+        if (inputValue.trim().length <= 1) return; // Debe ser mayor de 2 caracteres el input
+        onAddCategories(cat => [...cat, inputValue]);
+        setInputValue('');
     }
 
     return (

@@ -3,7 +3,7 @@ import AddCategory from './components/AddCategory';
 
 export default function GifExpertApp() {
 
-    const [categories, setCategories] = useState(['One Punch', 'Dragon Ball']);
+    const [categories, setCategories] = useState([]);
 
     const onAddCategory = () => {
         setCategories([
@@ -11,7 +11,7 @@ export default function GifExpertApp() {
             'Demon Slayer'
         ]);
 
-        // setCategories(cat => [...cat, 'Valorant'])
+        // setCategories(cat => [...cat, 'Valorant']) <== Importante en <AddCategory/>
     }
 
     console.log(categories);
@@ -26,9 +26,8 @@ export default function GifExpertApp() {
 
             {/* Listado de gif */}
 
-            <AddCategory />
+            <AddCategory onAddCategories={setCategories} />
 
-            <button onClick={onAddCategory}>Agregar</button>
             <ol>
                 {
                     categories.map((category, id) => {
