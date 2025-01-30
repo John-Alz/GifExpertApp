@@ -1,9 +1,31 @@
-import React from 'react'
+import { useState } from 'react'
 
 export default function GifExpertApp() {
+
+    const [categories, setCategories] = useState(['One Punch', 'Dragon Ball']);
+
+
+
     return (
         <>
-            <h1>Hola soy GifExpertApp</h1>
+            {/* Titulo */}
+            <h1>GifExpertApp</h1>
+
+            {/* Input */}
+
+            {/* Listado de gif */}
+            <ol>
+                {
+                    categories.map((category, id) => {
+                        return (
+                            <div key={id}>
+                                <li>{category}</li>
+                            </div>
+                        )
+                    })
+                }
+            </ol>
+            {/* Gif item */}
         </>
     )
 }
