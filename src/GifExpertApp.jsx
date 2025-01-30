@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import AddCategory from './components/AddCategory';
 
 export default function GifExpertApp() {
 
@@ -24,6 +25,9 @@ export default function GifExpertApp() {
             {/* Input */}
 
             {/* Listado de gif */}
+
+            <AddCategory />
+
             <button onClick={onAddCategory}>Agregar</button>
             <ol>
                 {
