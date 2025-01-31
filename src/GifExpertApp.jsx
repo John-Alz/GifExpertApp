@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import AddCategory from './components/AddCategory';
-import GifGrid from './components/GifGrid';
+import { AddCategory, GifGrid } from './components';
 
 export default function GifExpertApp() {
 
@@ -11,13 +10,17 @@ export default function GifExpertApp() {
         if (categories.includes(keyWord)) return;
 
         setCategories([
-            ...categories,
-            keyWord
+            keyWord,
+            ...categories
         ]);
 
         // setCategories(cat => [...cat, 'Valorant']) <== Importante en <AddCategory/> comentado
-    }
+    };
 
+    const onDeleteCategory = (keyWordDelete) => {
+        const newArr = categories.filter(word => word !== keyWordDelete);
+        setCategories(newArr)
+    }
 
     return (
         <>
@@ -26,11 +29,11 @@ export default function GifExpertApp() {
             <AddCategory onNewCategory={onAddCategory} />
 
             {
-                categories.map((category, id) =>
+                categories.length > 0 ? categories.map((category) =>
                 (
-                    <GifGrid key={category} category={category} />
+                    <GifGrid key={category} category={category} categories={categories} onDeleteCategory={onDeleteCategory} />
                 )
-                )
+                ) : <h2 className='empty-grid'>Busca tus gifs favoritos!!!</h2>
             }
         </>
     )

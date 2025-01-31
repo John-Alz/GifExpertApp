@@ -1,17 +1,28 @@
 
-import GifItem from "./GifItem";
+import { GifItem } from "./GifItem";
 import { useFetchGifs } from "../hooks/useFetchGifs";
+import { FaTrash } from "react-icons/fa";
 
-export default function GifGrid({ category }) {
 
-    const { images, isLoading, error } = useFetchGifs(category);
+export function GifGrid({ category, categories, onDeleteCategory }) {
+
+    const { images, isLoading } = useFetchGifs(category, categories);
+
+    const onSubmit = () => {
+        onDeleteCategory(category)
+    }
+
 
     return (
-        <>
-            <h3>{category}</h3>
+        <div className="grid-container">
+            <div className="title-category-container">
+                <h3>{category}</h3>
+                <button onClick={onSubmit}><FaTrash color="red" size={27} />
+                </button>
+            </div>
             <div className="card-grid">
                 {
-                    isLoading ? <h1>Cargando...</h1> : null
+                    isLoading && <h2>Cargando...</h2> //If sin el else.
                 }
                 {
                     images.map((image) =>
@@ -24,6 +35,6 @@ export default function GifGrid({ category }) {
                     ))
                 }
             </div>
-        </>
+        </div>
     )
 }
