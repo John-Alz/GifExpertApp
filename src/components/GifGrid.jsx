@@ -2,6 +2,7 @@
 import { GifItem } from "./GifItem";
 import { useFetchGifs } from "../hooks/useFetchGifs";
 import { FaTrash } from "react-icons/fa";
+import PropTypes from "prop-types";
 
 
 export function GifGrid({ category, categories, onDeleteCategory }) {
@@ -17,7 +18,7 @@ export function GifGrid({ category, categories, onDeleteCategory }) {
         <div className="grid-container">
             <div className="title-category-container">
                 <h3>{category}</h3>
-                <button onClick={onSubmit}><FaTrash color="red" size={27} />
+                <button aria-label="button" onClick={onSubmit}><FaTrash color="red" size={27} />
                 </button>
             </div>
             <div className="card-grid">
@@ -37,4 +38,9 @@ export function GifGrid({ category, categories, onDeleteCategory }) {
             </div>
         </div>
     )
+}
+
+GifGrid.propTypes = {
+    category: PropTypes.string.isRequired,
+    onDeleteCategory: PropTypes.func.isRequired,
 }

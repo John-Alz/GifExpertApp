@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 
 export function AddCategory({ onNewCategory }) {
@@ -13,12 +14,12 @@ export function AddCategory({ onNewCategory }) {
         const newInputValue = inputValue.trim().toLowerCase();
         if (newInputValue.length <= 1) return; // Debe ser mayor de 2 caracteres el input
         // // onAddCategories(cat => [...cat, inputValue]);
-        onNewCategory(newInputValue)
+        onNewCategory(newInputValue);
         setInputValue('');
     }
 
     return (
-        <form onSubmit={onSubmit} >
+        <form aria-label="form" onSubmit={onSubmit} >
             <input
                 type="text"
                 placeholder="Buscar Gifs"
@@ -27,4 +28,9 @@ export function AddCategory({ onNewCategory }) {
             />
         </form>
     )
+}
+
+
+AddCategory.propTypes = {
+    onNewCategory: PropTypes.func.isRequired,
 }
